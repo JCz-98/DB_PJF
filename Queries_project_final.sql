@@ -15,11 +15,11 @@ BEGIN
     START TRANSACTION;
     
 		SELECT 
-    idCliente
-INTO id_search FROM
-    Cliente
-WHERE
-    idCliente = new_id;
+			idCliente
+		INTO id_search FROM
+			Cliente
+		WHERE
+			idCliente = new_id;
 		
         IF id_search != new_id THEN
 			INSERT INTO
@@ -28,6 +28,7 @@ WHERE
 				(new_id, new_nombre, new_fecha);
         ELSE
 			SET return_val = 1;
+            rollback;
             
         END IF;
         
@@ -65,6 +66,7 @@ BEGIN
 				(new_gym, new_cliente, new_duracion, new_fecha);
         ELSE
 			SET return_val = 1;
+            rollback;
             
         END IF;
         
@@ -121,6 +123,9 @@ BEGIN
 					Entreador (idEmpleado, idCliente, especialidad)
 				VALUES
 					(new_gym, new_cliente, new_duracion, new_fecha);
+			ELSE
+				SET return_val = 1;
+				rollback;
 			END IF;
         ELSE
 			
@@ -133,6 +138,7 @@ BEGIN
 				SET return_val = 1;
 				rollback;
 			END IF;
+            
         END IF;			
 
 	COMMIT;
