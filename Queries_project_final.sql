@@ -1,5 +1,72 @@
 use gym_db;
 
+-- Reporte con vistas
+-- 1. Reporte de las maquinas mas usadas por entrendaores en rutinas de upper body
+CREATE VIEW equipos_usados_en rutinas_upper_body
+AS
+SELECT 
+	Equipo.nombre, Equipo.descripcion 
+FROM 
+	Rutina
+INNER JOIN 
+	 Localizacion USING (idLocalizacion)
+INNER JOIN 
+	Equipos USING (idEquipos)
+WHERE Localizacion.musculo = "Bicep" OR Localizacion.musculo = "Antebrazo"
+	OR Localizacion.musculo = "Tricep" OR Localizacion.musculo = "Espalda"
+	OR Localizacion.musculo = "Abdomen" OR Localizacion.musculo = "Hombros"
+
+CREATE VIEW rutinas_entrenadas_entrenador
+AS
+SELECT 
+	em.nombre, em.especialidad, idLocalizacion, series, repeticiones, fecha 
+FROM 
+	Rutina
+INNER JOIN
+	Entrenador as ent using (idEntrenador)
+INNER JOIN
+	Empleado as em using (idEmpleado)
+WHERE
+	em.nombre = "Camilo"
+    
+CREATE VIEW clientes_entrenados_kickboxing
+AS
+SELECT 
+	cl.nombre, em.especialidad, idLocalizacion, series, repeticiones, fecha 
+FROM 
+	Rutina
+INNER JOIN
+	Entrenador as ent using (idEntrenador)
+INNER JOIN
+	Cliente as cl using (idCliente)
+WHERE
+	ent.especialidad = "KickBoxing"
+
+CREATE VIEW nutricionista_informacion_cliente
+AS
+SELECT 
+	Cliente.nombre as paciente, Empleado.nombre as tratante, duracion as ultima_dieta, recomendaciones
+FROM 
+	Dieta
+INNER JOIN
+	Cliente  using (idCliente)
+INNER JOIN
+	Empleado using (idEmpleado)
+    
+CREATE VIEW fisioterapista_informacion_cliente
+AS
+SELECT 
+	Cliente.nombre as paciente, Empleado.nombre as tratante, fecha as ultima_revision, tratamiento
+FROM 
+	Fisioterapia
+INNER JOIN
+	Cliente  using (idCliente)
+INNER JOIN
+	Empleado using (idEmpleado)
+
+	
+-- Store Procedures with transactions
+
 DELIMITER $$
 
 -- 1. Agregar nuevo cliente. valida existencia
