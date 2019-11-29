@@ -16,6 +16,7 @@ WHERE Localizacion.musculo = "Bicep" OR Localizacion.musculo = "Antebrazo"
 	OR Localizacion.musculo = "Tricep" OR Localizacion.musculo = "Espalda"
 	OR Localizacion.musculo = "Abdomen" OR Localizacion.musculo = "Hombros"
 
+-- 2. Que rutinas dio un entredor en especifico
 CREATE VIEW rutinas_entrenadas_entrenador
 AS
 SELECT 
@@ -28,7 +29,8 @@ INNER JOIN
 	Empleado as em using (idEmpleado)
 WHERE
 	em.nombre = "Camilo"
-    
+
+-- 3. Que clientes tienen rutinas con especialidad
 CREATE VIEW clientes_entrenados_kickboxing
 AS
 SELECT 
@@ -42,6 +44,7 @@ INNER JOIN
 WHERE
 	ent.especialidad = "KickBoxing"
 
+-- 4. Informacion de clientes que tienen asistencia de nutricionista
 CREATE VIEW nutricionista_informacion_cliente
 AS
 SELECT 
@@ -52,7 +55,9 @@ INNER JOIN
 	Cliente  using (idCliente)
 INNER JOIN
 	Empleado using (idEmpleado)
-    
+
+-- 4. Informacion de clientes que tienen asistencia de fisioteriapia
+
 CREATE VIEW fisioterapista_informacion_cliente
 AS
 SELECT 
