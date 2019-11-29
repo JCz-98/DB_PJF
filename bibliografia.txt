@@ -1,0 +1,5 @@
+Matthews, M., Cole, J., & Gradecki, J. D. (2003). MySQL and Java developer's guide. John Wiley & Sons.
+Yarger, R. J., Reese, G., King, T., & Oram, A. (1999). MySQL and mSQL. O'Reilly & Associates, Inc..
+Ronstrom, M., & Thalmann, L. (2004). MySQL cluster architecture overview. MySQL Technical White Paper.
+Zoratti, I. (2006). MYSQL security best practices.
+Thibaud, C. (2006). MySQL 5: instalación, implementación, administración, programación. Ediciones ENI.
